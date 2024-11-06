@@ -41,3 +41,8 @@ select * from emp order by sal desc;
 select * from emp order by hiredate desc;
 -- 시간은 작을수록 오래된직원임.
 select * from emp order by hiredate;
+
+
+-- 4-14 여러 컬럼에 대한, 오름, 내림 차순 확인. 
+select * from emp order by deptno asc, sal desc;
+select * from emp order by deptno asc;
