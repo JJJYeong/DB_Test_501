@@ -95,3 +95,20 @@ SELECT ROUND(1234.5678) AS ROUND,
        ROUND(1234.5678, -1) AS ROUND_MINUS1, 
        ROUND(1234.5678, -2) AS ROUND_MINUS2 
   FROM DUAL; 
+  
+  -- 실습 6-20 
+SELECT TRUNC(1234.5678) AS TRUNC, 
+       TRUNC(1234.5678, 0) AS TRUNC_0, 
+       TRUNC(1234.5678, 1) AS TRUNC_1, 
+       TRUNC(1234.5678, 2) AS TRUNC_2, 
+       TRUNC(1234.5678, -1) AS TRUNC_MINUS1, 
+       TRUNC(1234.5678, -2) AS TRUNC_MINUS2 
+  FROM DUAL; 
+
+-- 실습 6-21 
+SELECT CEIL(3.14), -- 3 ---- 4 사이 중에서,큰수 
+       FLOOR(3.14), -- 3 ---- 4 사이 중에서,작은수
+       CEIL(-3.14), -- -4 -- -3.14-- -3 사이 중에서,큰수
+       FLOOR(-3.14) -- -4 -- -3.14-- -3 사이 중에서,작은수
+  FROM DUAL; 
+
