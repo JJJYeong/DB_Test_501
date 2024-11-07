@@ -225,22 +225,14 @@ SELECT SYSDATE,
        TO_CHAR(SYSDATE, 'HH:MI:SS P.M.') AS HHMISS_PM 
   FROM DUAL; 
   
-  - 실습 6-38 
-
+  -- 실습 6-38 
 SELECT SAL, 
-
        TO_CHAR(SAL, '$999,999') AS SAL_$, 
-
        TO_CHAR(SAL, 'L999,999') AS SAL_L, 
-
        TO_CHAR(SAL, '999,999.00') AS SAL_1, 
-
        TO_CHAR(SAL, '000,999,999.00') AS SAL_2, 
-
        TO_CHAR(SAL, '000999999.99') AS SAL_3, 
-
        TO_CHAR(SAL, '999,999,00') AS SAL_4 
-
   FROM EMP; 
 
  
@@ -248,25 +240,55 @@ SELECT SAL,
 -- 실습 6-39 
 
 SELECT 1300 - '1500', 
-
       '1300' + 1500 
-
  FROM DUAL; 
 
  
 
 -- 실습 6-40 
 
-SELECT '1,300' - '1,500' 
+SELECT '1300' - '1500' 
+  FROM DUAL; 
+
+-- 실습 6-41 
+
+SELECT TO_NUMBER('1,300', '999,999') - TO_NUMBER('1,500', '999,999') 
+  FROM DUAL; 
+  
+  
+  -- 실습 6-42 
+
+SELECT TO_DATE('2018-07-14', 'YYYY-MM-DD') AS TODATE1, 
+
+       TO_DATE('20180714', 'YYYY-MM-DD') AS TODATE2 
 
   FROM DUAL; 
 
  
 
--- 실습 6-41 
+-- 실습 6-43 
 
-SELECT TO_NUMBER('1,300', '999,999') - TO_NUMBER('1,500', '999,999') 
+SELECT * 
+
+  FROM EMP 
+
+ WHERE HIREDATE > TO_DATE('1981/06/01', 'YYYY/MM/DD'); 
+
+ 
+
+-- 실습 6-44 
+
+SELECT TO_DATE('49/12/10', 'YY/MM/DD') AS YY_YEAR_49, 
+
+       TO_DATE('49/12/10', 'RR/MM/DD') AS RR_YEAR_49, 
+
+       TO_DATE('50/12/10', 'YY/MM/DD') AS YY_YEAR_50, 
+
+       TO_DATE('50/12/10', 'RR/MM/DD') AS RR_YEAR_50, 
+
+       TO_DATE('51/12/10', 'YY/MM/DD') AS YY_YEAR_51, 
+
+       TO_DATE('51/12/10', 'RR/MM/DD') AS RR_YEAR_51 
 
   FROM DUAL; 
-  
  
