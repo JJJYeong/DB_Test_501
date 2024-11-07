@@ -257,38 +257,99 @@ SELECT TO_NUMBER('1,300', '999,999') - TO_NUMBER('1,500', '999,999')
   
   
   -- 실습 6-42 
-
 SELECT TO_DATE('2018-07-14', 'YYYY-MM-DD') AS TODATE1, 
-
        TO_DATE('20180714', 'YYYY-MM-DD') AS TODATE2 
-
   FROM DUAL; 
-
- 
 
 -- 실습 6-43 
-
 SELECT * 
-
   FROM EMP 
-
  WHERE HIREDATE > TO_DATE('1981/06/01', 'YYYY/MM/DD'); 
+
+-- 실습 6-44 
+SELECT TO_DATE('49/12/10', 'YY/MM/DD') AS YY_YEAR_49, 
+       TO_DATE('49/12/10', 'RR/MM/DD') AS RR_YEAR_49, 
+       TO_DATE('50/12/10', 'YY/MM/DD') AS YY_YEAR_50, 
+       TO_DATE('50/12/10', 'RR/MM/DD') AS RR_YEAR_50, 
+       TO_DATE('51/12/10', 'YY/MM/DD') AS YY_YEAR_51, 
+       TO_DATE('51/12/10', 'RR/MM/DD') AS RR_YEAR_51 
+  FROM DUAL; 
+  
+  -- 실습 6-45 
+
+SELECT EMPNO, ENAME, SAL, COMM, SAL+COMM, 
+
+       NVL(COMM, 0), 
+
+       SAL+NVL(COMM, 0) 
+
+  FROM EMP; 
 
  
 
--- 실습 6-44 
+-- 실습 6-46 
 
-SELECT TO_DATE('49/12/10', 'YY/MM/DD') AS YY_YEAR_49, 
+SELECT EMPNO, ENAME, COMM, 
 
-       TO_DATE('49/12/10', 'RR/MM/DD') AS RR_YEAR_49, 
+       NVL2(COMM, 'O', 'X'), 
 
-       TO_DATE('50/12/10', 'YY/MM/DD') AS YY_YEAR_50, 
+       NVL2(COMM, SAL*12+COMM, SAL*12) AS ANNSAL 
 
-       TO_DATE('50/12/10', 'RR/MM/DD') AS RR_YEAR_50, 
+  FROM EMP; 
 
-       TO_DATE('51/12/10', 'YY/MM/DD') AS YY_YEAR_51, 
+ 
 
-       TO_DATE('51/12/10', 'RR/MM/DD') AS RR_YEAR_51 
+-- 실습 6-47 
 
-  FROM DUAL; 
+SELECT EMPNO, ENAME, JOB, SAL, 
+
+       DECODE(JOB, 
+
+              'MANAGER' , SAL*1.1, 
+
+              'SALESMAN', SAL*1.05, 
+
+              'ANALYST' , SAL, 
+
+              SAL*1.03) AS UPSAL 
+
+  FROM EMP; 
+
+ 
+
+-- 실습 6-48 
+
+SELECT EMPNO, ENAME, JOB, SAL, 
+
+       CASE JOB 
+
+          WHEN 'MANAGER' THEN SAL*1.1 
+
+          WHEN 'SALESMAN' THEN SAL*1.05 
+
+          WHEN 'ANALYST' THEN SAL 
+
+          ELSE SAL*1.03 
+
+       END AS UPSAL 
+
+  FROM EMP; 
+
+ 
+
+-- 실습 6-49 
+
+SELECT EMPNO, ENAME, COMM, 
+
+       CASE 
+
+          WHEN COMM IS NULL THEN '해당사항 없음' 
+
+          WHEN COMM = 0 THEN '수당없음' 
+
+          WHEN COMM > 0 THEN '수당 : ' || COMM 
+
+       END AS COMM_TEXT 
+
+  FROM EMP; 
  
