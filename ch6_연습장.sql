@@ -278,23 +278,16 @@ SELECT TO_DATE('49/12/10', 'YY/MM/DD') AS YY_YEAR_49,
   -- 실습 6-45 
 
 SELECT EMPNO, ENAME, SAL, COMM, SAL+COMM, 
-
        NVL(COMM, 0), 
-
        SAL+NVL(COMM, 0) 
-
   FROM EMP; 
 
  
 
 -- 실습 6-46 
-
 SELECT EMPNO, ENAME, COMM, 
-
        NVL2(COMM, 'O', 'X'), 
-
        NVL2(COMM, SAL*12+COMM, SAL*12) AS ANNSAL 
-
   FROM EMP; 
 
  
@@ -302,17 +295,11 @@ SELECT EMPNO, ENAME, COMM,
 -- 실습 6-47 
 
 SELECT EMPNO, ENAME, JOB, SAL, 
-
        DECODE(JOB, 
-
               'MANAGER' , SAL*1.1, 
-
               'SALESMAN', SAL*1.05, 
-
               'ANALYST' , SAL, 
-
               SAL*1.03) AS UPSAL 
-
   FROM EMP; 
 
  
@@ -320,36 +307,22 @@ SELECT EMPNO, ENAME, JOB, SAL,
 -- 실습 6-48 
 
 SELECT EMPNO, ENAME, JOB, SAL, 
-
        CASE JOB 
-
           WHEN 'MANAGER' THEN SAL*1.1 
-
           WHEN 'SALESMAN' THEN SAL*1.05 
-
           WHEN 'ANALYST' THEN SAL 
-
           ELSE SAL*1.03 
-
        END AS UPSAL 
-
   FROM EMP; 
 
  
 
 -- 실습 6-49 
-
 SELECT EMPNO, ENAME, COMM, 
-
        CASE 
-
           WHEN COMM IS NULL THEN '해당사항 없음' 
-
           WHEN COMM = 0 THEN '수당없음' 
-
           WHEN COMM > 0 THEN '수당 : ' || COMM 
-
        END AS COMM_TEXT 
-
   FROM EMP; 
  
