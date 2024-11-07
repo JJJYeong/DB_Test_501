@@ -39,4 +39,59 @@ INSTR('HELLO, ORACLE!','L',2,2) AS INSTR_3,
 INSTR('HELLO HI LOTTO','O',2,2) AS INSTR_4
 FROM DUAL;
 
+-- 실습 6-10
+select * from emp
+where instr(ename,'S') > 0;
 
+-- 실습 6-11
+select * from emp
+where ename like '%S%';
+
+-- 실습 6-12
+select '010-1234-5678' as 변경전_문자열,
+ replace('010-1234-5678','-',' ') as 변경1문자열,
+ replace('010-1234-5678','-') as 변경2문자열
+ from dual;
+
+-- 실습 6-13
+select 'Oracle', lpad('Oracle',10,'#') as LPAD_ex1, 
+rpad('Oracle',10,'#') as RPAD_ex2,
+lpad('Oracle',10) as LPAD_ex3,
+rpad('Oracle',10) as RPAD_ex4
+from dual;
+
+-- 실습 6-14
+select rpad('971225-1',14,'*') as rpad_ex1,
+rpad('lsy1111',20,'*') as rpad_ex2
+from dual;
+
+-- 실습 6-15
+select concat(ename, empno) as concat_ex1 from emp;
+
+-- 실습 6-16
+select ename || empno as concat_ex1 from emp;
+
+
+-- 실습 6-17
+select '[' || trim('  Oracle  ') || ']' as Trim,
+'[' || trim(leading from '  Oracle  ') || ']' as Trim_leading_ex,
+'[' || trim(trailing from '  Oracle  ') || ']' as Trim_trailing_ex2,
+'[' || trim(both from '  Oracle  ') || ']' as Trim_both_ex3
+from dual;
+
+-- 실습 6-18 
+SELECT '[' || TRIM(' _Ora  cle_ ') || ']' AS TRIM, 
+       '[' || LTRIM(' _Oracle_ ') || ']' AS LTRIM, 
+       '[' || LTRIM('<_Oracle_>', '_<') || ']' AS LTRIM_2, 
+       '[' || RTRIM(' _Oracle_ ') || ']' AS RTRIM, 
+       '[' || RTRIM('<_Oracle_>', '>_') || ']' AS RTRIM_2 
+  FROM DUAL; 
+  
+  -- 실습 6-19 
+SELECT ROUND(1234.5678) AS ROUND, 
+       ROUND(1234.5678, 0) AS ROUND_0, 
+       ROUND(1234.5678, 1) AS ROUND_1, 
+       ROUND(1234.5678, 2) AS ROUND_2, 
+       ROUND(1234.5678, -1) AS ROUND_MINUS1, 
+       ROUND(1234.5678, -2) AS ROUND_MINUS2 
+  FROM DUAL; 
