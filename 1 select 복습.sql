@@ -11,13 +11,11 @@ from dept;
 -- 산술연산(+-*/) 
 
 select ename 이름, job 직종, sal 월급, sal+100 보너스월급, sal - sal*0.1 감봉 
-
 from emp; 
 
 -- DISTINCT 중복 값 제거 (똑같은 값이 있을경우 하나만 표시됨) 
 
 select DISTINCT job 직종 
-
 from emp; 
 
 -- 예제 문제 풀기 
@@ -25,13 +23,11 @@ from emp;
 --1 
 
 select empno, ename, ename 
-
 from emp; 
 
 --2 
 
 select ename, sal,  sal * 1.1  AS 뉴셀러리 
-
 from emp; 
 
 --3 
@@ -43,38 +39,26 @@ from emp;
 -- 연결 연산자 || 문자열을 연결 
 
 SELECT ename || ' is a '|| job as 직업정보 
-
 from emp; 
 
 -- 예제 4 
-
-SELECT empno, ename||' '||ename 풀네임, email||'@company.com' 이메일 
-
-from emp; 
+SELECT empno, ename||' '||ename 풀네임 from emp; 
 
 -- WHERE 조건절 
 
 select * 
-
 from emp 
-
-where sal > 14000; 
-
- 
+where sal > 4000; 
 
 select * 
-
 from emp 
-
-where ename = 'King'; -- 같을경우 = , 데이터는 대소문자를 구별한다. 문자열은 한개따옴표 
+where ename = 'KING'; -- 같을경우 = , 데이터는 대소문자를 구별한다. 문자열은 한개따옴표 
 
  
 
 SELECT *  
-
 FROM emp 
-
-WHERE hire_date < '2002-06-10'; --날짜도 비교가 된다. 비교시 문자열을 날짜형태로 적으면 자동변환됨 
+WHERE hiredate < '2002-06-10'; --날짜도 비교가 된다. 비교시 문자열을 날짜형태로 적으면 자동변환됨 
 
 -- AND OR NOT 연산자 
 
@@ -92,9 +76,9 @@ select *
 
 from emp 
 
-where not(hire_date >'2004/01/01' OR sal > 5000); 
+where not(hiredate >'2004/01/01' OR sal > 5000); 
 
--- where (hire_date <='2004/01/01' AND sal <= 5000); 
+-- where (hiredate <='2004/01/01' AND sal <= 5000); 
 
 -- 1 
 
@@ -148,7 +132,7 @@ where sal BETWEEN 10000 AND 20000;
 
 select * from emp 
 
-where hire_date BETWEEN '2004-01-01' AND '2004-12-30'; 
+where hiredate BETWEEN '2004-01-01' AND '2004-12-30'; 
 
 --3 
 
