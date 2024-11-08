@@ -1,19 +1,14 @@
 -- 실습 9-1 
 
 SELECT SAL 
-
   FROM EMP 
-
  WHERE ENAME = 'JONES'; 
 
  
 
 -- 실습 9-2 
-
 SELECT * 
-
   FROM EMP 
-
  WHERE SAL > 2975; 
 
  
@@ -21,13 +16,9 @@ SELECT *
 -- 실습 9-3 
 
 SELECT * 
-
   FROM EMP 
-
  WHERE SAL > (SELECT SAL 
-
                 FROM EMP 
-
                WHERE ENAME = 'JONES'); 
 
  
@@ -35,63 +26,45 @@ SELECT *
 -- 실습 9-4 
 
 SELECT * 
-
   FROM EMP 
-
- WHERE HIREDATE < (SELECT HIREDATE 
-
+ WHERE HIREDATE > (SELECT HIREDATE 
                      FROM EMP 
-
                     WHERE ENAME = 'SCOTT'); 
 
  
 
 -- 실습 9-5 
-
 SELECT E.EMPNO, E.ENAME, E.JOB, E.SAL, D.DEPTNO, D.DNAME, D.LOC 
-
   FROM EMP E, DEPT D 
-
  WHERE E.DEPTNO = D.DEPTNO 
-
    AND E.DEPTNO = 20 
-
    AND E.SAL > (SELECT AVG(SAL) 
-
                   FROM EMP); 
-
+SELECT AVG(SAL) 
+                  FROM EMP;
  
 
 -- 실습 9-6 
 
 SELECT * 
-
   FROM EMP 
-
  WHERE DEPTNO IN (20, 30); 
-
- 
 
 -- 실습 9-7 
 
 SELECT * 
-
   FROM EMP 
-
- WHERE SAL IN (SELECT MAX(SAL) 
-
+ WHERE SAL IN (SELECT MAX(SAL) -- 2850,3000,5000
                  FROM EMP 
-
                GROUP BY DEPTNO); 
+SELECT deptno,MAX(SAL) 
+                 FROM EMP 
+               GROUP BY DEPTNO;               
 
- 
 
 -- 실습 9-8 
-
 SELECT MAX(SAL) 
-
   FROM EMP 
-
 GROUP BY DEPTNO; 
 
  
@@ -99,13 +72,9 @@ GROUP BY DEPTNO;
 -- 실습 9-9 
 
 SELECT * 
-
   FROM EMP 
-
- WHERE SAL = ANY (SELECT MAX(SAL) 
-
+ WHERE SAL = ANY (SELECT MAX(SAL) -- 2850,3000,5000
                     FROM EMP 
-
                   GROUP BY DEPTNO); 
 
  
@@ -125,20 +94,15 @@ SELECT *
  
 
 -- 실습 9-11 
-
 SELECT * 
-
   FROM EMP 
-
  WHERE SAL < ANY (SELECT SAL 
-
                     FROM EMP 
-
                    WHERE DEPTNO = 30) 
-
-                  ORDER BY SAL, EMPNO; 
-
- 
+                  ORDER BY SAL, EMPNO;
+SELECT SAL 
+FROM EMP 
+WHERE DEPTNO = 30;
 
 -- 실습 9-12 
 
@@ -153,13 +117,9 @@ SELECT SAL
 -- 실습 9-13 
 
 SELECT * 
-
   FROM EMP 
-
- WHERE SAL > ANY (SELECT SAL 
-
+ WHERE SAL > ANY (SELECT SAL --최소 급여 950
                     FROM EMP 
-
                    WHERE DEPTNO = 30); 
 
  
@@ -167,13 +127,9 @@ SELECT *
 -- 실습 9-14 
 
 SELECT * 
-
   FROM EMP 
-
  WHERE SAL < ALL (SELECT SAL 
-
                     FROM EMP 
-
                    WHERE DEPTNO = 30); 
 
  
@@ -181,29 +137,22 @@ SELECT *
 -- 실습 9-15 
 
 SELECT * 
-
   FROM EMP 
-
- WHERE SAL > ALL (SELECT SAL 
-
+ WHERE SAL >  (SELECT MAX(SAL) -- 950 이상 2850 이하 범위
                     FROM EMP 
-
                    WHERE DEPTNO = 30); 
 
  
 
 -- 실습 9-16 
-
 SELECT * 
-
   FROM EMP 
-
  WHERE EXISTS (SELECT DNAME 
-
                  FROM DEPT 
-
-                WHERE DEPTNO = 10); 
-
+                WHERE DEPTNO = 12); 
+SELECT DNAME 
+                 FROM DEPT 
+                WHERE DEPTNO = 12;
  
 
 -- 실습 9-17 
@@ -223,25 +172,21 @@ SELECT *
 -- 실습 9-18 
 
 SELECT * 
-
   FROM EMP 
-
  WHERE (DEPTNO, SAL) IN (SELECT DEPTNO, MAX(SAL) 
-
                            FROM EMP 
-
                          GROUP BY DEPTNO); 
+SELECT DEPTNO, MAX(SAL) 
+                           FROM EMP 
+                         GROUP BY DEPTNO;                         
 
  
 
 -- 실습 9-19 
 
 SELECT E10.EMPNO, E10.ENAME, E10.DEPTNO, D.DNAME, D.LOC 
-
   FROM (SELECT * FROM EMP WHERE DEPTNO = 10) E10, 
-
        (SELECT * FROM DEPT) D 
-
  WHERE E10.DEPTNO = D.DEPTNO; 
 
  
@@ -249,37 +194,24 @@ SELECT E10.EMPNO, E10.ENAME, E10.DEPTNO, D.DNAME, D.LOC
 -- 실습 9-20 
 
 WITH 
-
 E10 AS (SELECT * FROM EMP WHERE DEPTNO = 10), 
-
 D AS (SELECT * FROM DEPT) 
-
 SELECT E10.EMPNO, E10.ENAME, E10.DEPTNO, D.DNAME, D.LOC 
-
   FROM E10, D 
-
  WHERE E10.DEPTNO = D.DEPTNO; 
 
  
 
 -- 실습 9-21 
-
+select * from SALGRADE;
 SELECT EMPNO, ENAME, JOB, SAL, 
-
        (SELECT GRADE  
-
           FROM SALGRADE 
-
          WHERE E.SAL BETWEEN LOSAL AND HISAL) AS SALGRADE, 
-
        DEPTNO, 
-
       (SELECT DNAME 
-
          FROM DEPT 
-
         WHERE E.DEPTNO = DEPT.DEPTNO) AS DNAME 
-
 FROM EMP E; 
 
  
