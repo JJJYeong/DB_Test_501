@@ -186,63 +186,49 @@ where comm is null;
 -- 널이 아닌 경우 is not null 
 
 SELECT * FROM emp 
-
 where comm is not null; 
 
 -- 예제  
 
 SELECT * FROM emp 
-
-where manager_id is null; 
+where mgr is not null; 
 
  
 
 -- ORDER BY 정렬순서를 정함 
 
 SELECT * FROM emp 
-
 ORDER BY sal DESC; -- ASC(순차적,디폴트 생략가능) DESC(내림차순) 
 
 -- 2개 이상 열로 정렬시 
 
 SELECT deptno, empno, ename, ename  
-
 FROM emp 
-
-ORDER BY deptno , empno; -- 처음에 부서번호순이고 같으면 직원번호순서 
+ORDER BY deptno , empno DESC; -- 처음에 부서번호순이고 같으면 직원번호순서 
 
 -- 별칭열로 정렬 
 
 SELECT deptno, ename, sal*12 연봉 
-
 FROM emp 
-
 ORDER BY 연봉 DESC; --연봉이 큰순으로 정렬 
 
 --1 
 
 SELECT empno, ename, ename 
-
 FROM emp 
-
 ORDER BY empno DESC; 
 
 --2 
 
 SELECT * FROM emp 
-
 where job LIKE '%CLERK%' 
-
 ORDER BY sal DESC; 
 
 -- 3 
 
 SELECT empno 직원번호, ename 이름, deptno 부서번호, sal 월급 
-
 FROM emp 
-
-where empno BETWEEN 120 AND 150 
-
+where empno BETWEEN 7100 AND 8000 
 ORDER BY deptno DESC, sal DESC; 
 
  
