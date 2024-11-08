@@ -63,60 +63,57 @@ WHERE hiredate < '2002-06-10'; --날짜도 비교가 된다. 비교시 문자열을 날짜형태로 
 -- AND OR NOT 연산자 
 
 select ename, deptno, sal 
-
 from emp 
+where (deptno = 30 
+OR deptno = 20)
+AND sal > 2000;  
 
-where deptno = 60 
-
-OR deptno = 80 AND sal > 10000;  
+-- blake 3000 초과
+select ename, deptno, sal 
+from emp 
+where deptno = 30;
+-- jones, scott, ford , 2000 초과
+select ename, deptno, sal 
+from emp 
+where deptno = 20;
 
 --NOT 
-
 select * 
-
 from emp 
-
-where not(hiredate >'2004/01/01' OR sal > 5000); 
+where not(hiredate >'1981/01/01' OR sal > 2000); 
 
 -- where (hiredate <='2004/01/01' AND sal <= 5000); 
 
 -- 1 
 
 select * from emp 
-
-where sal > 4000 AND job = 'IT_PROG'; 
+where sal > 2000 AND job = 'MANAGER'; 
 
 -- 2 
 
 select * from emp 
-
-where sal > 4000 AND (job = 'IT_PROG' OR job = 'FI_ACCOUNT'); 
+where sal > 2000 AND (job = 'MANAGER' OR job = 'CLERK'); 
 
  
 
 -- IN 연산자 
-
 select * from emp 
-
 where sal = 4000 OR sal = 3000 OR sal = 2700; 
 
  
 
 select * from emp 
-
 where sal IN(4000, 3000, 2700); 
 
 --1  
 
 select * from emp 
-
 where sal IN(10000, 17000, 24000); 
 
 --2 
 
 select * from emp 
-
-where deptno NOT IN(30,50,80,100,110); 
+where deptno NOT IN(30,50); 
 
  
 
@@ -125,19 +122,16 @@ where deptno NOT IN(30,50,80,100,110);
 --1 
 
 select * from emp 
-
-where sal BETWEEN 10000 AND 20000; 
+where sal BETWEEN 1000 AND 3000; 
 
 --2 
 
 select * from emp 
-
-where hiredate BETWEEN '2004-01-01' AND '2004-12-30'; 
+where hiredate BETWEEN '1980-01-01' AND '1982-12-31'; 
 
 --3 
 
 select * from emp 
-
 where sal NOT BETWEEN 7000 AND 17000; 
 
  
@@ -145,51 +139,41 @@ where sal NOT BETWEEN 7000 AND 17000;
 -- LIKE 연산자 문자열 키워드 조회시 % 또는 _ 같이 사용 
 
 SELECT * 
-
 FROM emp 
-
 WHERE ename LIKE 'B%'; --B로 시작하는 모든 문자열 검색 
 
 SELECT * 
-
 FROM emp 
-
-WHERE ename LIKE '%b%'; --중간에 b가 들어가는 모든 문자열 
+WHERE ename LIKE '%B%'; --중간에 b가 들어가는 모든 문자열 
 
 SELECT * 
 
 FROM emp 
-
-WHERE ename LIKE '____y'; -- 언더바_는 딱 한 문자를 의미 
+WHERE ename LIKE '_A%'; -- 언더바_는 딱 한 문자를 의미 
 
 -- 예제 1 
 
 SELECT * FROM emp 
-
-WHERE job LIKE '%AD%'; 
+WHERE job LIKE '%A%'; 
 
 -- 예제 2 
 
 SELECT * FROM emp 
-
 WHERE job LIKE '%AD___'; 
 
 -- 예제 3 
 
 SELECT * FROM emp 
-
 WHERE phone_number LIKE '%1234'; 
 
 -- 예제 4 
 
 SELECT * FROM emp 
-
 WHERE phone_number NOT LIKE '%3%' AND phone_number LIKE '%9'; 
 
 -- 예제 5 
 
 SELECT * FROM emp 
-
 WHERE job LIKE '%MGR%' OR  job LIKE '%ASST%'; 
 
  
@@ -197,14 +181,13 @@ WHERE job LIKE '%MGR%' OR  job LIKE '%ASST%';
 -- 널값을 검색할때 is null 
 
 SELECT * FROM emp 
-
-where commission_pct is null; 
+where comm is null; 
 
 -- 널이 아닌 경우 is not null 
 
 SELECT * FROM emp 
 
-where commission_pct is not null; 
+where comm is not null; 
 
 -- 예제  
 
