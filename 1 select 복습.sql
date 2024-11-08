@@ -10,7 +10,7 @@ from dept;
 
 -- 산술연산(+-*/) 
 
-select ename 이름, job 직종, salary 월급, salary+100 보너스월급, salary - salary*0.1 감봉 
+select ename 이름, job 직종, sal 월급, sal+100 보너스월급, sal - sal*0.1 감봉 
 
 from emp; 
 
@@ -30,7 +30,7 @@ from emp;
 
 --2 
 
-select ename, salary,  salary * 1.1  AS 뉴셀러리 
+select ename, sal,  sal * 1.1  AS 뉴셀러리 
 
 from emp; 
 
@@ -58,7 +58,7 @@ select *
 
 from emp 
 
-where salary > 14000; 
+where sal > 14000; 
 
  
 
@@ -78,13 +78,13 @@ WHERE hire_date < '2002-06-10'; --날짜도 비교가 된다. 비교시 문자열을 날짜형태로
 
 -- AND OR NOT 연산자 
 
-select ename, deptno, salary 
+select ename, deptno, sal 
 
 from emp 
 
 where deptno = 60 
 
-OR deptno = 80 AND salary > 10000;  
+OR deptno = 80 AND sal > 10000;  
 
 --NOT 
 
@@ -92,21 +92,21 @@ select *
 
 from emp 
 
-where not(hire_date >'2004/01/01' OR salary > 5000); 
+where not(hire_date >'2004/01/01' OR sal > 5000); 
 
--- where (hire_date <='2004/01/01' AND salary <= 5000); 
+-- where (hire_date <='2004/01/01' AND sal <= 5000); 
 
 -- 1 
 
 select * from emp 
 
-where salary > 4000 AND job = 'IT_PROG'; 
+where sal > 4000 AND job = 'IT_PROG'; 
 
 -- 2 
 
 select * from emp 
 
-where salary > 4000 AND (job = 'IT_PROG' OR job = 'FI_ACCOUNT'); 
+where sal > 4000 AND (job = 'IT_PROG' OR job = 'FI_ACCOUNT'); 
 
  
 
@@ -114,19 +114,19 @@ where salary > 4000 AND (job = 'IT_PROG' OR job = 'FI_ACCOUNT');
 
 select * from emp 
 
-where salary = 4000 OR salary = 3000 OR salary = 2700; 
+where sal = 4000 OR sal = 3000 OR sal = 2700; 
 
  
 
 select * from emp 
 
-where salary IN(4000, 3000, 2700); 
+where sal IN(4000, 3000, 2700); 
 
 --1  
 
 select * from emp 
 
-where salary IN(10000, 17000, 24000); 
+where sal IN(10000, 17000, 24000); 
 
 --2 
 
@@ -142,7 +142,7 @@ where deptno NOT IN(30,50,80,100,110);
 
 select * from emp 
 
-where salary BETWEEN 10000 AND 20000; 
+where sal BETWEEN 10000 AND 20000; 
 
 --2 
 
@@ -154,7 +154,7 @@ where hire_date BETWEEN '2004-01-01' AND '2004-12-30';
 
 select * from emp 
 
-where salary NOT BETWEEN 7000 AND 17000; 
+where sal NOT BETWEEN 7000 AND 17000; 
 
  
 
@@ -234,7 +234,7 @@ where manager_id is null;
 
 SELECT * FROM emp 
 
-ORDER BY salary DESC; -- ASC(순차적,디폴트 생략가능) DESC(내림차순) 
+ORDER BY sal DESC; -- ASC(순차적,디폴트 생략가능) DESC(내림차순) 
 
 -- 2개 이상 열로 정렬시 
 
@@ -246,7 +246,7 @@ ORDER BY deptno , empno; -- 처음에 부서번호순이고 같으면 직원번호순서
 
 -- 별칭열로 정렬 
 
-SELECT deptno, ename, salary*12 연봉 
+SELECT deptno, ename, sal*12 연봉 
 
 FROM emp 
 
@@ -266,17 +266,18 @@ SELECT * FROM emp
 
 where job LIKE '%CLERK%' 
 
-ORDER BY salary DESC; 
+ORDER BY sal DESC; 
 
 -- 3 
 
-SELECT empno 직원번호, ename 이름, deptno 부서번호, salary 월급 
+SELECT empno 직원번호, ename 이름, deptno 부서번호, sal 월급 
 
 FROM emp 
 
 where empno BETWEEN 120 AND 150 
 
-ORDER BY deptno DESC, salary DESC; 
+ORDER BY deptno DESC, sal DESC; 
 
  
 
+ 
