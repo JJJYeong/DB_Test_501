@@ -6,7 +6,7 @@ select * from emp where deptno = 30;
 select * from emp where JOB = 'CLERK';
 
 -- 실습 5-3
-select * from emp 
+select ename, sal , mgr from emp 
 where 
 deptno = 30 
 and 
@@ -110,13 +110,16 @@ WHERE COMM = null;
 select * from emp
 WHERE comm is null;
 
+select * from emp
+WHERE comm is not null;
+
 -- 실습 5-27
 -- is not null 로 확인 다시 해보기.
 -- mgr , 해당 사원의 직속상관의 사원 번호 의미. 
 select * from emp
 WHERE mgr is not null;
 
--- 실습 5-33
+-- 실습 5-33, 깔 맞춤 반드시 함. 
 select empno, ename, sal, deptno from emp where deptno =10
 union
 select sal, job, deptno, sal from emp where deptno =10;
