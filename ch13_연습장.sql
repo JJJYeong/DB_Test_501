@@ -92,7 +92,7 @@ SELECT * FROM USER_IND_COLUMNS;
 
 -- ½Ç½À 13-14 
 
-SQLPLUS SYSTEM/oracle 
+--SQLPLUS SYSTEM/oracle 
 
  
 
