@@ -1,30 +1,20 @@
+-- CUI로 접속 하는 방법 
+-- 1. 터미널에서, 
+-- docker exec -it sharp_edison bash
+-- 2. sqlplus 
+-- 3. scott/tiger 로 접속 해보기
+
 -- 실습 11-1 
-
 CREATE TABLE DEPT_TCL 
-
     AS SELECT * 
-
          FROM DEPT; 
-
- 
-
+         
 SELECT * FROM DEPT_TCL; 
 
- 
-
 -- 실습 11-2 
-
 INSERT INTO DEPT_TCL VALUES(50, 'DATABASE', 'SEOUL'); 
-
- 
-
-UPDATE DEPT_TCL SET LOC = 'BUSAN' WHERE DEPTNO = 40; 
-
- 
-
+ UPDATE DEPT_TCL SET LOC = 'BUSAN' WHERE DEPTNO = 40; 
 DELETE FROM DEPT_TCL WHERE DNAME = 'RESEARCH'; 
-
- 
 
 SELECT * FROM DEPT_TCL; 
 
@@ -34,8 +24,6 @@ SELECT * FROM DEPT_TCL;
 
 ROLLBACK; 
 
- 
-
 SELECT * FROM DEPT_TCL; 
 
  
@@ -43,18 +31,12 @@ SELECT * FROM DEPT_TCL;
 -- 실습 11-4 
 
 INSERT INTO DEPT_TCL VALUES(50, 'NETWORK', 'SEOUL'); 
-
- 
-
 UPDATE DEPT_TCL SET LOC = 'BUSAN' WHERE DEPTNO = 20; 
-
- 
-
 DELETE FROM DEPT_TCL WHERE DEPTNO = 40; 
 
  
-
 SELECT * FROM DEPT_TCL; 
+rollback;
 
  
 
