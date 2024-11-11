@@ -1,12 +1,9 @@
 -- 입력 INSERT 
-
 -- 테이블 열의 데이터타입 간단히 보기 
-
 DESC dept; 
-
 INSERT INTO dept(deptno,dname,loc) 
-
-VALUES(11, '게임부', '부산서면'); 
+VALUES(11, '게임부', '부산서면');
+select * from dept;
 
 -- 열이름 생략할때(모든 열을 다입력해야함) 
 
@@ -27,8 +24,11 @@ VALUES(13, '게임부3');
 DESC emp; 
 
 INSERT INTO emp(empno, ename, job, mgr, hiredate, sal, comm, deptno) 
-
 VALUES(2070,'이상용','TEA',null,sysdate, 1000, 500, null); 
+INSERT INTO emp(empno, ename, job, mgr, hiredate, sal, comm, deptno) 
+
+VALUES(2071,null,'TEA',null,sysdate, 1000, 500, null); 
+select * from emp;
 
 -- 예제 1 
 
@@ -45,27 +45,22 @@ INSERT INTO dept VALUES(16, '게임부6', '부산서면6');
 -- 음악부서의 매니저와 로케이션 수정하기 
 
 UPDATE dept 
-
 SET dname = '수정부서1', loc = '수정지역1' 
-
 WHERE deptno = 11; 
+select * from dept;
 
--- 예제 부서번호 150에서 200번까지 매니저ID를 100으로 수정하기 
+-- 예제 부서번호 10에서 12번까지 매니저ID를 100으로 수정하기 
 
 UPDATE dept 
-
 SET dname = '수정부서2', loc = '수정지역2' 
-
 WHERE deptno between 10 and 12;  
-
+select * from dept;
  
 
 -- 삭제하기 DELETE 
 
 delete from dept 
-
-where dname = '게임부'; 
-
+where dname = '개발2'; 
 delete from dept 
 
 where dname = '게임'; 
@@ -83,6 +78,7 @@ UPDATE emp SET eanme = '전체 변경 샘플 롤백 할 예정';
 -- 그전 상태로 복구(이전의 성공적 commit 상태로 돌아감) 
 
 rollback; 
+select * from dept;
 
 -- 입력 수정 삭제 연습하기 
 
