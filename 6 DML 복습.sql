@@ -18,7 +18,7 @@ VALUES(12, '게임부2', '부산서면2');
 
 INSERT INTO dept(deptno,dname) 
 
-VALUES(13, '게임부3', ); 
+VALUES(13, '게임부3'); 
 
  
 
