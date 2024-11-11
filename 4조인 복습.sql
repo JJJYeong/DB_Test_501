@@ -1,4 +1,6 @@
 -- 기본 조인 방법  
+select * from emp;
+select * from dept;
 
 select empno 직원번호, ename 이름, e.deptno 부서번호, dname 부서명  
 from emp e JOIN dept d  
@@ -18,88 +20,32 @@ JOIN emp e2
  
 
 select empno 직원번호, ename 이름, e.deptno 부서번호, dname 부서명  
-
 from emp e JOIN dept d  
     ON e.deptno = d.deptno  
-
-
 where d.deptno = 30;  
-
- 
-
   
 -- 자체조인 (같은 테이블내에서 참조하고 있을경우)  
 
  
-
 select e.ename 직원, m.ename 매니저  
-
- 
-
 from emp e JOIN emp m  
-
- 
-
     ON e.mgr = m.empno;  
 
- 
-
-  
-
- 
-
 -- 외부조인  
-
- 
-
+select * from emp;
 -- 왼쪽 외부조인  
 
- 
-
-select ename 직원, e.deptno 부서번호, d.dname 부서명  
-
- 
-
-from emp e LEFT OUTER JOIN dept d  
-
- 
-
+select ename 직원, e.deptno 부서번호, e.comm 보너스, d.dname 부서명  
+ from emp e LEFT OUTER JOIN dept d  
     ON e.deptno = d.deptno;  
-
- 
-
+    
 -- 오른쪽 외부조인  
-
- 
-
-select ename 직원, d.deptno 부서번호, d.dname 부서명  
-
- 
-
+ select ename 직원, d.deptno 부서번호, d.dname 부서명  
 from emp e RIGHT OUTER JOIN dept d  
-
- 
-
     ON e.deptno = d.deptno;  
-
- 
 
 -- 풀 외부조인  
 
- 
-
 select ename 직원, d.deptno 부서번호, d.dname 부서명  
-
- 
-
 from emp e FULL OUTER JOIN dept d  
-
- 
-
     ON e.deptno = d.deptno;  
-
- 
-
-  
-
- 
