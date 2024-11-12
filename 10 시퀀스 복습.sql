@@ -1,18 +1,16 @@
 --시퀀스 
+-- 순서 있게, 특정의 컬럼을 자동 생성 하고, 
+-- 중복 되지 않는게 목적임. 
 
 CREATE SEQUENCE 시퀀스1; -- 생성(옵션없이) 
-
 CREATE SEQUENCE 시퀀스2 
-
 start with 1000 
-
 INCREMENT by 10; --1000번부터 시작 10씩 증가하는 시퀀스2 
 
  
 
 select * from user_sequences 
-
-where sequence_name = '시퀀스1'; 
+where sequence_name = '시퀀스2'; 
 
  
 
@@ -21,11 +19,8 @@ where sequence_name = '시퀀스1';
 DROP TABLE 부서; 
 
 CREATE TABLE 부서 ( 
-
     번호 number primary key, 
-
     이름 VARCHAR2(100) 
-
     ); 
 
 INSERT INTO 부서 VALUES(시퀀스2.NEXTVAL, '영업부'); 
@@ -35,6 +30,7 @@ INSERT INTO 부서 VALUES(시퀀스2.NEXTVAL, '개발부');
 INSERT INTO 부서 VALUES(시퀀스2.NEXTVAL, '회계부'); 
 
 INSERT INTO 부서 VALUES(시퀀스2.NEXTVAL, '경영부'); 
+INSERT INTO 부서 VALUES(시퀀스2.NEXTVAL, '경영부2'); 
 
 select * from 부서; 
 
