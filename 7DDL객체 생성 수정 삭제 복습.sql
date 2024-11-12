@@ -3,11 +3,8 @@
 DROP TABLE comp; 
 
 CREATE TABLE comp ( 
-
     고정열 CHAR(10), 
-
     가변열 VARCHAR2(10) 
-
 ); 
 
 DESC comp; 
@@ -23,11 +20,8 @@ select * from comp;
 -- 숫자와 날짜 테이블 
 
 CREATE TABLE ex_date( 
-
     id NUMBER(2), 
-
     start_date DATE DEFAULT SYSDATE 
-
 ); 
 
 DESC ex_date; 
@@ -53,39 +47,28 @@ DROP TABLE ex_date;
 drop table emp1; 
 
 CREATE TABLE emp1 ( 
-
     id number(3) PRIMARY KEY,--기본키 
-
     name VARCHAR2(20) NOT NULL, --널값을 입력할수 없음 
-
     sal NUMBER CHECK(sal>1000) --체크는 조건을 입력 
-
 ); 
 
 DESC emp1; 
 
 INSERT INTO emp1 VALUES( 1, '길동', 1001); 
 
-INSERT INTO emp1 VALUES( 2, '펭수', 2000); --기본키는 중복안됨, 널값입력안됨 
+INSERT INTO emp1 VALUES( 2, '펭수', 10000); --기본키는 중복안됨, 널값입력안됨 
 
  
 
 -- 예제 
 
-CREATE TABLE members ( 
-
+CREATE TABLE members2 ( 
     member_id   NUMBER(2)       PRIMARY KEY, 
-
     first_name  VARCHAR2(50)    NOT NULL, 
-
     last_name   VARCHAR2(50)    NOT NULL, 
-
     gender      VARCHAR2(5)     CHECK (gender IN('Man', 'Woman')), 
-
     birth_day   DATE    DEFAULT SYSDATE, 
-
     email       VARCHAR2(200)   UNIQUE NOT NULL 
-
 ); 
 
  
@@ -113,9 +96,7 @@ INSERT INTO 직원 VALUES(2,'펭수',2);
 DROP TABLE emp_temp; 
 
 CREATE TABLE emp_temp 
-
 AS 
-
 select * from emp where 1!=1; --조건에 만족하는 데이터가 없음 
 
  
