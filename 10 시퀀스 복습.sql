@@ -1,87 +1,63 @@
--- 직원테이블의 인덱스 모음 
+--시퀀스 
 
-SELECT  
+CREATE SEQUENCE 시퀀스1; -- 생성(옵션없이) 
 
-      TABLE_NAME             테이블명, 
+CREATE SEQUENCE 시퀀스2 
 
-      INDEX_NAME             인덱스이름, 
+start with 1000 
 
-      COLUMN_NAME            컬럼이름 
-
-FROM ALL_IND_COLUMNS  
-
-WHERE TABLE_NAME = 'EMPLOYEES'; 
-
--- 기본키, 유니크 열은 자동으로 인덱스가 생성됨 또한 기본키를 참조하는 외래키도 인덱스가 있음 
+INCREMENT by 10; --1000번부터 시작 10씩 증가하는 시퀀스2 
 
  
 
--- 예제용 멤버 테이블 만들기 
+select * from user_sequences 
 
-CREATE TABLE members( 
-
-    member_id NUMBER, 
-
-    first_name VARCHAR2(100) NOT NULL, 
-
-    last_name VARCHAR2(100) NOT NULL, 
-
-    gender CHAR(1) NOT NULL, 
-
-    dob DATE NOT NULL, 
-
-    email VARCHAR2(255) NOT NULL, 
-
-    PRIMARY KEY(member_id) --제약조건을 아래의 행에 따로 넣을때 괄호안에 열의 이름 입력 
-
-); 
-
-SELECT  
-
-      TABLE_NAME             테이블명, 
-
-      INDEX_NAME             인덱스이름, 
-
-      COLUMN_NAME            컬럼이름 
-
-FROM ALL_IND_COLUMNS  
-
-WHERE TABLE_NAME = 'MEMBERS'; --테이블명은 대문자 
+where sequence_name = '시퀀스1'; 
 
  
 
-select * from members 
+-- 테이블에 입력시 시퀀스 사용방법 
 
-where last_name = 'Harse'; 
+DROP TABLE 부서; 
 
- 
+CREATE TABLE 부서 ( 
 
-EXPLAIN PLAN FOR 
+    번호 number primary key, 
 
-select * from members 
+    이름 VARCHAR2(100) 
 
-where last_name = 'Harse'; 
+    ); 
 
--- 보고서 확인 
+INSERT INTO 부서 VALUES(시퀀스2.NEXTVAL, '영업부'); 
 
-SELECT  
+INSERT INTO 부서 VALUES(시퀀스2.NEXTVAL, '개발부'); 
 
-    PLAN_TABLE_OUTPUT  
+INSERT INTO 부서 VALUES(시퀀스2.NEXTVAL, '회계부'); 
 
-FROM  
+INSERT INTO 부서 VALUES(시퀀스2.NEXTVAL, '경영부'); 
 
-    TABLE(DBMS_XPLAN.DISPLAY()); 
-
- 
-
---인덱스 만들기 멤버즈 테이블의 last_name열 , 이름은 members_last_name_i 
-
-CREATE INDEX members_last_name_i 
-
-ON members(last_name); 
+select * from 부서; 
 
  
 
--- 인덱스 삭제 (인덱스는 테이블 삭제시 자동삭제됨) 
+-- 시퀀스의 현재값 확인 CURRVAL 
 
-DROP INDEX MEMBERS_LAST_NAME_I; 
+select 시퀀스1.currval from dual; 
+
+select 시퀀스2.currval from dual; 
+
+ 
+
+-- 시퀀스의 삭제 DROP 
+
+DROP SEQUENCE 시퀀스1; 
+
+DROP SEQUENCE 시퀀스2; 
+
+ 
+
+update 부서 
+
+set 번호 = 시퀀스1.NEXTVAL; 
+
+select * from 부서; 
