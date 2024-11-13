@@ -1,5 +1,4 @@
 -- 실습 18-1 
-
 DECLARE 
    V_DEPT_ROW DEPT%ROWTYPE; 
 BEGIN 
@@ -16,7 +15,6 @@ END;
  
 
 -- 실습 18-2 
-
 DECLARE 
    -- 커서 데이터를 입력할 변수 선언 
    V_DEPT_ROW DEPT%ROWTYPE; 
@@ -106,6 +104,7 @@ BEGIN
                                      || ', LOC : ' || V_DEPT_ROW.LOC); 
       END LOOP; 
    CLOSE c1; 
+   
    -- 20번 부서 처리를 위해 커서 사용 
    OPEN c1 (20); 
       LOOP 
